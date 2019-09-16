@@ -1,0 +1,149 @@
+525 525
+true:  {'text': '赶集', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '赶集'}}
+pre:  {'text': '赶集', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '赶集'}}
+true:  {'text': '从新加坡花园怎么去宁溪路', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_poi': '宁溪路', 'startLoc_poi': '新加坡花园'}}
+pre:  {'text': '从新加坡花园怎么去宁溪路', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_poi': '新加坡花园宁溪路'}}
+true:  {'text': '到合肥市逍遥津公园怎么走', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_city': '合肥', 'endLoc_poi': '逍遥津公园'}}
+pre:  {'text': '到合肥市逍遥津公园怎么走', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_city': '合肥', 'endLoc_province': '市', 'endLoc_poi': '逍遥津公园'}}
+true:  {'text': '湖北荆州到黄石的火车', 'domain': 'train', 'intent': 'QUERY', 'slots': {'endLoc_city': '黄石', 'startLoc_city': '荆州', 'startLoc_province': '湖北'}}
+pre:  {'text': '湖北荆州到黄石的火车', 'domain': 'train', 'intent': 'QUERY', 'slots': {'startLoc_city': '湖北荆州', 'endLoc_city': '黄石'}}
+true:  {'text': '发短信给张三说“画皮2在哪个台播出”', 'domain': 'message', 'intent': 'SEND', 'slots': {'content': '画皮2在哪个台播出', 'name': '张三'}}
+pre:  {'text': '发短信给张三说“画皮2在哪个台播出”', 'domain': 'message', 'intent': 'SEND', 'slots': {'name': '张三“画皮2'}}
+true:  {'text': '查看短消息', 'domain': 'message', 'intent': 'VIEW', 'slots': {}}
+pre:  {'text': '查看短消息', 'domain': 'message', 'intent': 'SEND', 'slots': {}}
+true:  {'text': '查找张伟军', 'domain': 'contacts', 'intent': nan, 'slots': {'name': '张伟军'}}
+pre:  {'text': '查找张伟军', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '张伟军'}}
+true:  {'text': '有什么特色美食。', 'domain': 'cookbook', 'intent': 'QUERY', 'slots': {'keyword': '特色美食'}}
+pre:  {'text': '有什么特色美食。', 'domain': 'cookbook', 'intent': 'QUERY', 'slots': {'category': '特', 'keyword': '色美食'}}
+true:  {'text': '回放昨晚的焦点访谈', 'domain': 'epg', 'intent': 'LOOK_BACK', 'slots': {'datetime_time': '昨晚', 'name': '焦点访谈'}}
+pre:  {'text': '回放昨晚的焦点访谈', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'datetime_time': '昨晚', 'name': '焦点访谈'}}
+true:  {'text': 'BTV生活节目选择回放', 'domain': 'epg', 'intent': 'LOOK_BACK', 'slots': {'tvchannel': 'BTV生活'}}
+pre:  {'text': 'BTV生活节目选择回放', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'tvchannel': 'BTV生活'}}
+true:  {'text': '上一期15选5的中奖号码是多少？', 'domain': 'lottery', 'intent': 'NUMBER_QUERY', 'slots': {'name': '15选5', 'relIssue': '上一期'}}
+pre:  {'text': '上一期15选5的中奖号码是多少？', 'domain': 'lottery', 'intent': 'NUMBER_QUERY', 'slots': {'name': '15选5'}}
+true:  {'text': '我想看足球中超，第25轮的比赛时间。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+pre:  {'text': '我想看足球中超，第25轮的比赛时间。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '足球中超', 'datetime_date': '25'}}
+true:  {'text': '帮我查一下周杰伦的歌', 'domain': 'music', 'intent': 'SEARCH', 'slots': {'artist': '周杰伦'}}
+pre:  {'text': '帮我查一下周杰伦的歌', 'domain': 'music', 'intent': 'PLAY', 'slots': {'artist': '周杰伦'}}
+true:  {'text': '播放眼色', 'domain': 'music', 'intent': 'PLAY', 'slots': {'song': '眼色'}}
+pre:  {'text': '播放眼色', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '眼色'}}
+true:  {'text': '打开腾讯头条新闻', 'domain': 'news', 'intent': 'PLAY', 'slots': {'category': '头条', 'media': '腾讯'}}
+pre:  {'text': '打开腾讯头条新闻', 'domain': 'news', 'intent': 'PLAY', 'slots': {'name': '腾讯头条'}}
+true:  {'text': '收听安徽广播电台。', 'domain': 'radio', 'intent': 'LAUNCH', 'slots': {'location_province': '安徽', 'name': '广播电台'}}
+pre:  {'text': '收听安徽广播电台。', 'domain': 'radio', 'intent': 'LAUNCH', 'slots': {'name': '安徽广播电台'}}
+true:  {'text': '搜索湖南卫视直播。', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '湖南卫视'}}
+pre:  {'text': '搜索湖南卫视直播。', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'tvchannel': '湖南卫视'}}
+true:  {'text': '天津电视台的国际频道，拜托了哈', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'category': '国际', 'name': '天津电视台'}}
+pre:  {'text': '天津电视台的国际频道，拜托了哈', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'tvchannel': '天津电视台', 'category': '国', 'name': '际'}}
+true:  {'text': '找一下非诚勿扰娱乐节目', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '节目', 'name': '非诚勿扰', 'tag': '娱乐'}}
+pre:  {'text': '找一下非诚勿扰娱乐节目', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '非诚勿扰', 'category': '娱乐节目'}}
+true:  {'text': '2012年美国公告牌音乐大奖颁奖礼', 'domain': 'video', 'intent': 'QUERY', 'slots': {'datetime_date': '2012年', 'name': '美国公告牌音乐大奖颁奖礼'}}
+pre:  {'text': '2012年美国公告牌音乐大奖颁奖礼', 'domain': 'lottery', 'intent': 'QUERY', 'slots': {'datetime_date': '2012年', 'area': '美国', 'name': '公告牌音乐大奖'}}
+true:  {'text': '你们什么搞笑剧', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '搞笑剧'}}
+pre:  {'text': '你们什么搞笑剧', 'domain': 'video', 'intent': 'QUERY', 'slots': {'tag': '搞笑', 'category': '剧'}}
+true:  {'text': '查找90年代好评的武侠电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '电影', 'decade': '90年代', 'payment': '好评', 'tag': '武侠'}}
+pre:  {'text': '查找90年代好评的武侠电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'datetime_date': '90年代', 'tag': '武侠', 'category': '电影'}}
+true:  {'text': '今天有雨吗', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'datetime_date': '今天', 'questionWord': '有', 'subfocus': '雨'}}
+pre:  {'text': '今天有雨吗', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'datetime_date': '今天'}}
+true:  {'text': '新浪汽车', 'domain': 'website', 'intent': 'OPEN', 'slots': {'name': '新浪汽车'}}
+pre:  {'text': '新浪汽车', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '新浪汽车'}}
+true:  {'text': '百度百科', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '百度百科'}}
+pre:  {'text': '百度百科', 'domain': 'website', 'intent': 'OPEN', 'slots': {'name': '百度百科'}}
+true:  {'text': '带我去丹阳市眼镜市场', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_area': '丹阳', 'endLoc_poi': '眼镜市场'}}
+pre:  {'text': '带我去丹阳市眼镜市场', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_poi': '丹阳市眼镜市场'}}
+true:  {'text': '上一期双色球开什么', 'domain': 'lottery', 'intent': 'NUMBER_QUERY', 'slots': {'name': '双色球', 'relIssue': '上一期'}}
+pre:  {'text': '上一期双色球开什么', 'domain': 'lottery', 'intent': 'QUERY', 'slots': {'datetime_date': '上一', 'name': '双色球'}}
+true:  {'text': '昆山大润发在哪里', 'domain': 'map', 'intent': 'POSITION', 'slots': {'location_area': '昆山', 'location_poi': '大润发'}}
+pre:  {'text': '昆山大润发在哪里', 'domain': 'map', 'intent': 'POSITION', 'slots': {'location_poi': '昆山大润发'}}
+true:  {'text': '沿途有没有加油站', 'domain': 'map', 'intent': 'POSITION', 'slots': {'location_poi': '加油站'}}
+pre:  {'text': '沿途有没有加油站', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_poi': '加油站'}}
+true:  {'text': 'CCTV6电影', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': 'CCTV6电影'}}
+pre:  {'text': 'CCTV6电影', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': 'CCTV6电', 'category': '影'}}
+true:  {'text': '播放断点', 'domain': 'music', 'intent': 'PLAY', 'slots': {'song': '断点'}}
+pre:  {'text': '播放断点', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '断点'}}
+true:  {'text': '分手时，背一首诗吧？', 'domain': 'poetry', 'intent': 'DEFAULT', 'slots': {}}
+pre:  {'text': '分手时，背一首诗吧？', 'domain': 'poetry', 'intent': 'DEFAULT', 'slots': {'keyword': '分'}}
+true:  {'text': '新建联系人18622625490', 'domain': 'contacts', 'intent': 'CREATE', 'slots': {'code': '18622625490'}}
+pre:  {'text': '新建联系人18622625490', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '18622625490'}}
+true:  {'text': '添加一条通讯录姓名张守刚号码是13811725158', 'domain': 'contacts', 'intent': 'CREATE', 'slots': {'code': '13811725158', 'name': '张守刚'}}
+pre:  {'text': '添加一条通讯录姓名张守刚号码是13811725158', 'domain': 'email', 'intent': 'LAUNCH', 'slots': {'name': '通讯录张守刚13811725158'}}
+true:  {'text': '新建联系人天天', 'domain': 'contacts', 'intent': 'CREATE', 'slots': {'name': '天天'}}
+pre:  {'text': '新建联系人天天', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '新建联系人天天'}}
+true:  {'text': '找一首歌叫斑马斑马', 'domain': 'music', 'intent': 'SEARCH', 'slots': {'song': '斑马斑马'}}
+pre:  {'text': '找一首歌叫斑马斑马', 'domain': 'music', 'intent': 'PLAY', 'slots': {'song': '斑马斑马'}}
+true:  {'text': '人造鸡蛋的配方。', 'domain': 'cookbook', 'intent': nan, 'slots': {'dishName': '人造鸡蛋'}}
+pre:  {'text': '人造鸡蛋的配方。', 'domain': 'cookbook', 'intent': 'QUERY', 'slots': {'dishName': '人造鸡蛋'}}
+true:  {'text': '打开应用漫画', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '漫画'}}
+pre:  {'text': '打开应用漫画', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '漫画'}}
+true:  {'text': '现在电视台在放什么节目', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'category': '节目', 'datetime_time': '现在'}}
+pre:  {'text': '现在电视台在放什么节目', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'datetime_time': '现在'}}
+true:  {'text': '现在有什么好的电视剧。', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'category': '电视剧', 'datetime_time': '现在'}}
+pre:  {'text': '现在有什么好的电视剧。', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '电视剧'}}
+true:  {'text': '现在看看有最新的新闻吗？', 'domain': 'news', 'intent': 'PLAY', 'slots': {'datetime_time': '现在', 'keyword': '最新'}}
+pre:  {'text': '现在看看有最新的新闻吗？', 'domain': 'news', 'intent': 'PLAY', 'slots': {'datetime_time': '现在'}}
+true:  {'text': '今天晚上天津卫视放什么年岁月', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'datetime_date': '今天', 'datetime_time': '晚上', 'tvchannel': '天津卫视'}}
+pre:  {'text': '今天晚上天津卫视放什么年岁月', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'datetime_date': '今天', 'datetime_time': '晚上', 'tvchannel': '天津卫视', 'name': '年岁月'}}
+true:  {'text': '美国热门的恐怖电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'area': '美国', 'category': '电影', 'popularity': '热门', 'tag': '恐怖'}}
+pre:  {'text': '美国热门的恐怖电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'area': '美国', 'tag': '恐怖', 'category': '电影'}}
+true:  {'text': '从观音桥到重庆市图书馆怎么走', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_poi': '重庆市图书馆', 'startLoc_poi': '观音桥'}}
+pre:  {'text': '从观音桥到重庆市图书馆怎么走', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'startLoc_poi': '观音桥', 'endLoc_city': '重庆', 'endLoc_poi': '市图书馆'}}
+true:  {'text': '厦门到福建建阳的火车是几点呢', 'domain': 'train', 'intent': 'QUERY', 'slots': {'endLoc_area': '建阳', 'endLoc_province': '福建', 'startLoc_city': '厦门'}}
+pre:  {'text': '厦门到福建建阳的火车是几点呢', 'domain': 'train', 'intent': 'QUERY', 'slots': {'startLoc_city': '厦门', 'endLoc_city': '福建建阳'}}
+true:  {'text': '我要去姜堰', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_area': '姜堰'}}
+pre:  {'text': '我要去姜堰', 'domain': 'map', 'intent': 'ROUTE', 'slots': {'endLoc_area': '姜', 'endLoc_city': '堰'}}
+true:  {'text': '中超A组比赛结果分别是多少', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超', 'type': '结果'}}
+pre:  {'text': '中超A组比赛结果分别是多少', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+true:  {'text': '中超的比赛预告。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超', 'type': '预告'}}
+pre:  {'text': '中超的比赛预告。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+true:  {'text': '中超赛事预告，啊！', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超', 'type': '预告'}}
+pre:  {'text': '中超赛事预告，啊！', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+true:  {'text': '广州恒大比赛比分。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'name': '广州恒大', 'type': '比分'}}
+pre:  {'text': '广州恒大比赛比分。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'name': '广州恒大'}}
+true:  {'text': '中超比赛，结果。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超', 'type': '结果'}}
+pre:  {'text': '中超比赛，结果。', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+true:  {'text': '昨天恒大比赛结果是什么？', 'domain': 'match', 'intent': 'QUERY', 'slots': {'datetime_date': '昨天', 'name': '恒大', 'type': '结果'}}
+pre:  {'text': '昨天恒大比赛结果是什么？', 'domain': 'match', 'intent': 'QUERY', 'slots': {'datetime_date': '昨天', 'name': '恒大'}}
+true:  {'text': '中超赛事预告，从在哪里看呢？', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超', 'type': '预告'}}
+pre:  {'text': '中超赛事预告，从在哪里看呢？', 'domain': 'match', 'intent': 'QUERY', 'slots': {'category': '中超'}}
+true:  {'text': '胡歌忘记时间', 'domain': 'music', 'intent': 'PLAY', 'slots': {'artist': '胡歌', 'song': '忘记时间'}}
+pre:  {'text': '胡歌忘记时间', 'domain': 'video', 'intent': 'QUERY', 'slots': {'artist': '胡歌', 'name': '忘记时间'}}
+true:  {'text': '宫崎骏动画电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'artist': '宫崎骏', 'category': '电影', 'tag': '动画'}}
+pre:  {'text': '宫崎骏动画电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '宫崎', 'artist': '骏', 'tag': '动画', 'category': '电影'}}
+true:  {'text': '陈奕迅有什么歌啊', 'domain': 'music', 'intent': 'SEARCH', 'slots': {'artist': '陈奕迅'}}
+pre:  {'text': '陈奕迅有什么歌啊', 'domain': 'music', 'intent': 'PLAY', 'slots': {'artist': '陈奕迅'}}
+true:  {'text': '合肥明天的湿度如何', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'datetime_date': '明天', 'location_city': '合肥', 'subfocus': '湿度'}}
+pre:  {'text': '合肥明天的湿度如何', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'location_city': '合肥', 'datetime_date': '明天'}}
+true:  {'text': '我想听搜狐新闻', 'domain': 'news', 'intent': 'PLAY', 'slots': {'media': '搜狐'}}
+pre:  {'text': '我想听搜狐新闻', 'domain': 'app', 'intent': 'LAUNCH', 'slots': {'name': '搜狐新闻'}}
+true:  {'text': '有什么好看的校园小说', 'domain': 'novel', 'intent': 'QUERY', 'slots': {'category': '校园', 'popularity': '好看'}}
+pre:  {'text': '有什么好看的校园小说', 'domain': 'novel', 'intent': 'QUERY', 'slots': {'category': '校园'}}
+true:  {'text': '添加一条通讯录姓名葛勇手机号码189571642496', 'domain': 'contacts', 'intent': 'CREATE', 'slots': {'code': '189571642496', 'name': '葛勇'}}
+pre:  {'text': '添加一条通讯录姓名葛勇手机号码189571642496', 'domain': 'email', 'intent': 'LAUNCH', 'slots': {'name': '通讯录葛勇189571642496'}}
+true:  {'text': '晋江到武汉的航班', 'domain': 'flight', 'intent': 'QUERY', 'slots': {'endLoc_city': '武汉', 'startLoc_area': '晋江'}}
+pre:  {'text': '晋江到武汉的航班', 'domain': 'flight', 'intent': 'QUERY', 'slots': {'startLoc_city': '晋', 'startLoc_area': '江', 'endLoc_city': '武汉'}}
+true:  {'text': '高清北京文艺台', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '北京文艺台', 'resolution': '高清'}}
+pre:  {'text': '高清北京文艺台', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '高清北京文艺台'}}
+true:  {'text': '山东台高清', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '山东台', 'resolution': '高清'}}
+pre:  {'text': '山东台高清', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '山东台高清'}}
+true:  {'text': '高清动作电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '电影', 'resolution': '高清', 'tag': '动作'}}
+pre:  {'text': '高清动作电影', 'domain': 'epg', 'intent': 'QUERY', 'slots': {'name': '高清', 'tag': '动作', 'category': '电影'}}
+true:  {'text': '甄嬛传高清', 'domain': 'video', 'intent': 'QUERY', 'slots': {'name': '甄嬛传', 'resolution': '高清'}}
+pre:  {'text': '甄嬛传高清', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '甄嬛传高清'}}
+true:  {'text': 'CCTV6电影高清', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': 'CCTV6电影', 'resolution': '高清'}}
+pre:  {'text': 'CCTV6电影高清', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': 'CCTV6电影高清'}}
+true:  {'text': '东方卫视高清频道', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '东方卫视', 'resolution': '高清'}}
+pre:  {'text': '东方卫视高清频道', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '东方卫视高清频道'}}
+true:  {'text': '高清央视综艺', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '央视综艺', 'resolution': '高清'}}
+pre:  {'text': '高清央视综艺', 'domain': 'tvchannel', 'intent': 'PLAY', 'slots': {'name': '高清央视综艺'}}
+true:  {'text': '最新电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '电影', 'timeDescr': '最新'}}
+pre:  {'text': '最新电影', 'domain': 'video', 'intent': 'QUERY', 'slots': {'category': '电影'}}
+true:  {'text': '最近有什么好看得', 'domain': 'video', 'intent': 'QUERY', 'slots': {'scoreDescr': '好看', 'timeDescr': '最近'}}
+pre:  {'text': '最近有什么好看得', 'domain': 'video', 'intent': 'QUERY', 'slots': {}}
+true:  {'text': '今天温度是多少', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'datetime_date': '今天', 'subfocus': '温度'}}
+pre:  {'text': '今天温度是多少', 'domain': 'weather', 'intent': 'QUERY', 'slots': {'datetime_date': '今'}}
+true:  {'text': '腾讯股票昨日收盘价', 'domain': 'stock', 'intent': 'CLOSEPRICE_QUERY', 'slots': {'name': '腾讯', 'yesterday': '昨日'}}
+pre:  {'text': '腾讯股票昨日收盘价', 'domain': 'stock', 'intent': 'QUERY', 'slots': {'name': '腾讯'}}
+Domain sentence accuracy : 0.963810
+Intent sentence accuracy : 0.944762
+Slots f score : 0.796247
+Avg sentence accuracy : 0.742857
