@@ -13,7 +13,7 @@ from patterns import code_pattern
 import json
 import re
 
-#os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 def main(test_file = 'test.json'):
     tf.logging.set_verbosity(tf.logging.INFO)
@@ -28,7 +28,7 @@ def main(test_file = 'test.json'):
     processor = processors[task_name]()
 
     #1.1获取标签
-    id2domain, domain2id, id2intent, intent2id, id2slot, slot2id = \
+    id2domain, domain2id, id2intent, intent2id, id2slot, slot2id, domain_w, intent_w = \
             processor.get_labels(config["data_dir"],\
                                  "train" if config['do_train'] else "test")
 
@@ -89,7 +89,9 @@ def main(test_file = 'test.json'):
         num_warmup_steps = num_warmup_steps,
         use_tpu = config['use_tpu'],
         use_one_hot_embeddings = config['use_tpu'],
-        do_serve = config['do_serve'])
+        do_serve = config['do_serve'],
+        domain_w = domain_w,
+        intent_w = intent_w)
 
     estimator = tf.estimator.Estimator(
         model_fn = model_fn,
@@ -168,8 +170,6 @@ def main(test_file = 'test.json'):
                     #print(result.group(0), result.group(1))
                     data['slots']['code'] = result.group(1)
                     break
-            
-
             pred_results.append(data)
 
             #print(domain_pred, intent_pred, slot_pred)

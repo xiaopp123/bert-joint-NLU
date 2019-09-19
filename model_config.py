@@ -1,7 +1,7 @@
 joint_config = {
     "data_dir" : './data',
-    #"train_file" : 'train.json',
-    "train_file" : 'smp_train_ehance.json',
+    "train_file" : 'train.json',
+    #"train_file" : 'smp_train_ehance.json',
     #"train_file" : 'smp_2019_task1_train.json',
     "bert_config_file" : './chinese_L-12_H-768_A-12/bert_config.json',
     "task_name" : 'joint',
@@ -14,7 +14,7 @@ joint_config = {
     "do_eval" : False,
     "do_predict" : True,
     "do_serve" : False,
-    "train_batch_size" : 16,
+    "train_batch_size" : 32,
     "eval_batch_size" : 32,
     "predict_batch_size" : 16,
     "learning_rate" : 5e-5,

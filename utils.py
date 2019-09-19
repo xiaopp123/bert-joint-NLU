@@ -7,6 +7,7 @@ from bert import modeling, tokenization, optimization
 from model_config import joint_config as config
 from tensorflow.contrib.layers.python.layers import initializers
 from lstm_crf_layer import BLSTM_CRF
+import numpy as np
 
 def get_slot_name(text, slot_label):
     slots = {}
@@ -81,6 +82,7 @@ class Joint_Processor(object):
             data_list = self._read_json(os.path.join(data_dir, config['train_file']))
             domain_labels = set([data['domain'] for data in data_list])
             intent_labels = set([str(data['intent']) for data in data_list])
+
             slots_labels = set()
             for data in data_list:
                 for slot in data['slots']:
@@ -93,6 +95,29 @@ class Joint_Processor(object):
 
             id2intent = {i : label for i, label in enumerate(intent_labels)}
             intent2id = {label : i for i, label in id2intent.items()}
+
+            #
+            domain_d = {}
+            intent_d = {}
+            for data in data_list:
+                if data['domain'] not in domain_d:
+                    domain_d[data['domain']] = 1
+                else:
+                    domain_d[data['domain']] += 1
+
+            for data in data_list:
+                if data['intent'] not in intent_d:
+                    intent_d[str(data['intent'])] = 1
+                else:
+                    intent_d[str(data['intent'])] += 1
+
+            domain_w = [1] * len(domain2id)
+            intent_w = [1] * len(intent2id)
+            for key in domain2id:
+                domain_w[domain2id[key]] = len(data_list) / (len(domain2id) + domain_d[key])
+            for key in intent2id:
+                intent_w[intent2id[key]] = len(data_list) / (len(intent2id) + intent_d[key])
+
 
             id2slot = {i : label for i, label in enumerate(slots_labels, 4)}
             id2slot[0] = '[PAD]'
@@ -109,12 +134,15 @@ class Joint_Processor(object):
             with open(config['label_file'], 'rb') as fr:
                 id2domain, domain2id, id2intent, intent2id, id2slot, slot2id = pickle.load(fr)
 
+            domain_w = [1] * len(domain2id)
+            intent_w = [1] * len(intent2id)
+
         '''
         print("bert load %d domain labels, %d intent labels, %d slot labels" % \
                 (len(id2domain), len(id2intent), len(id2slot)))
         '''
 
-        return id2domain, domain2id, id2intent, intent2id, id2slot, slot2id
+        return id2domain, domain2id, id2intent, intent2id, id2slot, slot2id, domain_w, intent_w
 
 
     @classmethod
@@ -378,7 +406,7 @@ def input_fn_builder(features, seq_length, is_training, drop_remainder):
     return input_fn
 
 
-def domain_classification(model, domain_id, num_domain, is_training):
+def domain_classification(model, domain_id, num_domain, is_training, domain_w):
     '''domain classification'''
     #[batch, hidden_size]
     print("domain_classification...")
@@ -390,6 +418,8 @@ def domain_classification(model, domain_id, num_domain, is_training):
     domain_output_bias = tf.get_variable("domain_output_bias",\
             [num_domain], initializer=tf.zeros_initializer())
     
+    domain_w = tf.get_variable("domain_w", initializer=domain_w, dtype=tf.float32, trainable=False)
+
     with tf.variable_scope("domain_loss"):
         if is_training:
             output_layer = tf.nn.dropout(output_layer, keep_prob = config['dropout_rate'])
@@ -399,13 +429,13 @@ def domain_classification(model, domain_id, num_domain, is_training):
         domain_log_probs = tf.nn.log_softmax(domain_logits, axis=-1)
         domain_predictions = tf.argmax(domain_logits, axis=-1)
         domain_one_hot_lables = tf.one_hot(domain_id, depth=num_domain, dtype=tf.float32)
-        domain_per_example_loss = -tf.reduce_sum(domain_one_hot_lables * domain_log_probs, axis=-1)
+        domain_per_example_loss = -tf.reduce_sum(domain_one_hot_lables * domain_log_probs * domain_w, axis=-1)
         
         domain_loss = tf.reduce_mean(domain_per_example_loss)
 
         return domain_loss, domain_probabilities, domain_predictions
 
-def intent_classification(model, intent_id, num_intent, is_training):
+def intent_classification(model, intent_id, num_intent, is_training, intent_w):
     '''intent classification'''
     #[batch, hidden_size]
     output_layer = model.get_pooled_output()
@@ -415,6 +445,8 @@ def intent_classification(model, intent_id, num_intent, is_training):
             initializer = tf.truncated_normal_initializer(stddev=0.02))
     intent_output_bias = tf.get_variable("intent_output_bias",\
             [num_intent], initializer=tf.zeros_initializer())
+
+    intent_w = tf.get_variable("intent_w", initializer=intent_w, dtype=tf.float32, trainable=False)
     
     with tf.variable_scope("intent_loss"):
         if is_training:
@@ -425,7 +457,8 @@ def intent_classification(model, intent_id, num_intent, is_training):
         intent_log_probs = tf.nn.log_softmax(intent_logits, axis=-1)
         intent_predictions = tf.argmax(intent_logits, axis=-1)
         intent_one_hot_lables = tf.one_hot(intent_id, depth=num_intent, dtype=tf.float32)
-        intent_per_example_loss = -tf.reduce_sum(intent_one_hot_lables * intent_log_probs, axis=-1)
+        #类别不均匀，损失加权
+        intent_per_example_loss = -tf.reduce_sum(intent_one_hot_lables * intent_log_probs * intent_w, axis=-1)
         
         intent_loss = tf.reduce_mean(intent_per_example_loss)
 
@@ -463,7 +496,7 @@ def slot_filling(model, lengths, slot_id, num_slot, is_training):
 
 def create_model(bert_config, is_training, input_ids, input_mask,\
                  segment_ids, domain_id, intent_id, slot_id, num_domain,\
-                 num_intent, num_slot, use_one_hot_embeddings):
+                 num_intent, num_slot, use_one_hot_embeddings, domain_w, intent_w):
     '''create a sequence labeling and classification model'''
     model = modeling.BertModel(
         config = bert_config,
@@ -479,11 +512,11 @@ def create_model(bert_config, is_training, input_ids, input_mask,\
 
     #领域分类
     domain_loss, domain_probabilities, domain_pred =\
-            domain_classification(model, domain_id, num_domain, is_training)
+            domain_classification(model, domain_id, num_domain, is_training, domain_w)
 
     #意图识别
     intent_loss, intent_probabilities, intent_pred =\
-            intent_classification(model, intent_id, num_intent, is_training)
+            intent_classification(model, intent_id, num_intent, is_training, intent_w)
 
     #槽位填充
     slot_loss, slot_logits, trans, slot_pred = slot_filling(model, lengths, slot_id, num_slot, is_training)
@@ -500,7 +533,7 @@ def create_model(bert_config, is_training, input_ids, input_mask,\
     
 def model_fn_builder(bert_config, num_domain, num_intent, num_slot, init_checkpoint,\
                      learning_rate, num_train_steps, num_warmup_steps, use_tpu,\
-                     use_one_hot_embeddings, do_serve):
+                     use_one_hot_embeddings, do_serve, domain_w, intent_w):
 
     #为什么会有一个labels？
     def model_fn(features, labels, mode, params):
@@ -523,7 +556,7 @@ def model_fn_builder(bert_config, num_domain, num_intent, num_slot, init_checkpo
         domain_loss, intent_loss, slot_loss, domain_pred, intent_pred, slot_pred = \
                 create_model(bert_config, is_training, input_ids, input_mask, segment_ids, \
                     domain_id, intent_id, slot_id, num_domain, num_intent, num_slot,\
-                    use_one_hot_embeddings)
+                    use_one_hot_embeddings, np.array(domain_w, dtype=np.float32), np.array(intent_w, dtype=np.float32))
 
         '''
         total_loss, domain_pred, intent_pred, slot_pred = \
